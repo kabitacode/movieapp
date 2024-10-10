@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/screens/login/login.dart';
+import 'package:get/route_manager.dart';
+import 'package:movieapp/screens/home/Home_Screens.dart';
+import 'package:movieapp/screens/main/Main_Screens.dart';
+// import 'package:movieapp/screens/login/login.dart';
+// import 'package:movieapp/screens/movie/Movie_Screen.dart';
+import 'package:movieapp/screens/trending/Trending_Screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,12 +15,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Login(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => MainScreens()),
+        GetPage(name: '/home', page: () => HomeScreens()),
+        GetPage(name: '/trending', page: () => TrendingScreen())
+      ],
     );
   }
 }
