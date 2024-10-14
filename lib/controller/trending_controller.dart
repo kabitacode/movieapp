@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:movieapp/controller/main_controller.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class TrendingController extends GetxController {
   var isLoading = true.obs;
   var list = [].obs;
+  String? api_key = dotenv.env['API_KEY'];
 
   @override
   void onInit() {
@@ -22,7 +23,7 @@ class TrendingController extends GetxController {
     isLoading.value = true;
 
     final String baseUrl =
-        "https://api.themoviedb.org/3/trending/all/day?api_key=$API_KEY";
+        "https://api.themoviedb.org/3/trending/all/day?api_key=$api_key&page=1";
 
     try {
       final res = await http.get(Uri.parse(baseUrl),

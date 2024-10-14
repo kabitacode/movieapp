@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:movieapp/controller/main_controller.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
+import 'package:movieapp/screens/tv/Tv_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
 class MainScreens extends StatelessWidget {
@@ -13,7 +14,7 @@ class MainScreens extends StatelessWidget {
       backgroundColor: AppColors.background,
       body: Obx(() => IndexedStack(
             index: homeController.tabIndex.value,
-            children: [HomeScreens(), TrendingScreen()],
+            children: [HomeScreens(), TrendingScreen(), TvScreen()],
           )),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
@@ -22,7 +23,8 @@ class MainScreens extends StatelessWidget {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.ac_unit_sharp), label: "Trending")
+                icon: Icon(Icons.ac_unit_sharp), label: "Trending"),
+            BottomNavigationBarItem(icon: Icon(Icons.tv_rounded), label: "TV")
           ],
         );
       }),

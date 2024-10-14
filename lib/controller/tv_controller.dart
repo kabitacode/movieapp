@@ -1,21 +1,18 @@
 import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class DetailController extends GetxController {
+class TvController extends GetxController {
+  var list = [].obs;
   var isLoading = true.obs;
-  var list = {}.obs;
   String? api_key = dotenv.env['API_KEY'];
-
-  final int movieId;
-  DetailController({required this.movieId});
 
   @override
   void onInit() {
     super.onInit();
-    getDetail();
+    getApi();
   }
 
   @override
@@ -23,11 +20,11 @@ class DetailController extends GetxController {
     super.dispose();
   }
 
-  void getDetail() async {
+  void getApi() async {
     isLoading.value = true;
 
     final String baseUrl =
-        "https://api.themoviedb.org/3/movie/$movieId?api_key=$api_key";
+        "https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false";
 
     try {
       final res = await http.get(Uri.parse(baseUrl), headers: {
@@ -38,7 +35,7 @@ class DetailController extends GetxController {
       var result = json.decode(res.body);
 
       if (res.statusCode == 200) {
-        list.value = result;
+        list.value = result['results'];
       } else {
         Get.snackbar('error', 'Oops something error!');
       }
