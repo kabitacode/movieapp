@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:movieapp/bindings/detail_bindings.dart';
 import 'package:movieapp/bindings/home_bindings.dart';
+import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/trending_bindings.dart';
 import 'package:movieapp/bindings/tv_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
+import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
+import 'package:movieapp/screens/search/Search_Screens.dart';
 // import 'package:movieapp/screens/login/login.dart';
 // import 'package:movieapp/screens/movie/Movie_Screen.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
@@ -42,6 +46,14 @@ class MyApp extends StatelessWidget {
             page: () => TrendingScreen(),
             binding: TrendingBindings()),
         GetPage(name: '/tv', page: () => TvScreen(), binding: TvBindings()),
+        GetPage(
+            name: '/search',
+            page: () => SearchScreens(),
+            binding: SearchBindings()),
+        // GetPage(
+        //     name: '/detail',
+        //     page: () => DetailScreen(),
+        //     binding: DetailBindings()),
       ],
     );
   }

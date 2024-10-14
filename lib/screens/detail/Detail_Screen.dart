@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/controller/detail_controller.dart';
-import 'package:movieapp/controller/movie_controller.dart';
+import 'package:movieapp/controller/home_controller.dart';
 import 'package:movieapp/utils/theme.dart';
 
 class DetailScreen extends StatefulWidget {

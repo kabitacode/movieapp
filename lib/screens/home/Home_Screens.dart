@@ -14,14 +14,25 @@ class HomeScreens extends GetView<HomeController> {
         onGenerateRoute: controller.onGenerateRoute,
       ),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.ac_unit_sharp), label: "Trending"),
-              BottomNavigationBarItem(icon: Icon(Icons.tv_rounded), label: "TV")
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.movie), label: "Trending"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.tv_rounded), label: "TV"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.search), label: "Search"),
             ],
+            backgroundColor: AppColors.background,
             currentIndex: controller.tabIndex.value,
             selectedItemColor: AppColors.orange,
+            unselectedItemColor: Colors.white,
             onTap: controller.changeTabIndex,
           )),
     );
