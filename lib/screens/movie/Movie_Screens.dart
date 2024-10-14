@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movieapp/controller/home_controller.dart';
+import 'package:movieapp/controller/movie_controller.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class MovieScreens extends StatefulWidget {
+  const MovieScreens({super.key});
 
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  _MovieScreenState createState() => _MovieScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
-  final HomeController controller = Get.put(HomeController());
+class _MovieScreenState extends State<MovieScreens> {
+  final MovieController controller = Get.put(MovieController());
   final ScrollController _scrollController = ScrollController();
 
   @override

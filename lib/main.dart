@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:movieapp/bindings/home_bindings.dart';
+import 'package:movieapp/bindings/trending_bindings.dart';
+import 'package:movieapp/bindings/tv_bindings.dart';
+import 'package:movieapp/bindings/movie_bindings.dart';
+import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
-import 'package:movieapp/screens/main/Main_Screens.dart';
 // import 'package:movieapp/screens/login/login.dart';
 // import 'package:movieapp/screens/movie/Movie_Screen.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
@@ -24,12 +28,20 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/home',
+      defaultTransition: Transition.fade,
       getPages: [
-        GetPage(name: '/', page: () => MainScreens()),
-        GetPage(name: '/home', page: () => HomeScreens()),
-        GetPage(name: '/trending', page: () => TrendingScreen()),
-        GetPage(name: '/tv', page: () => TvScreen())
+        GetPage(
+            name: '/home', page: () => HomeScreens(), binding: HomeBindings()),
+        GetPage(
+            name: '/movie',
+            page: () => MovieScreens(),
+            binding: MovieBindings()),
+        GetPage(
+            name: '/trending',
+            page: () => TrendingScreen(),
+            binding: TrendingBindings()),
+        GetPage(name: '/tv', page: () => TvScreen(), binding: TvBindings()),
       ],
     );
   }

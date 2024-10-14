@@ -1,53 +1,48 @@
-import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'package:movieapp/controller/main_controller.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:movieapp/bindings/Trending_Bindings.dart';
+import 'package:movieapp/bindings/Tv_Bindings.dart';
+import 'package:movieapp/bindings/movie_bindings.dart';
+import 'package:movieapp/screens/movie/Movie_Screens.dart';
+import 'package:movieapp/screens/trending/Trending_Screen.dart';
+import 'package:movieapp/screens/tv/Tv_Screen.dart';
 
 class HomeController extends GetxController {
-  var isLoading = true.obs;
-  var list = [].obs;
-  var page = 1;
-  String? api_key = dotenv.env['API_KEY'];
+  static HomeController get to => Get.find();
+  var tabIndex = 0.obs;
+
+  final pages = <String>['/movie', '/trending', '/tv'];
+
+  void changeTabIndex(int idx) {
+    tabIndex.value = idx;
+    Get.toNamed(pages[idx], id: 1);
+  }
 
   @override
   void onInit() {
     super.onInit();
-    getMovies();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void getMovies({int? page}) async {
-    isLoading.value = true;
-
-    final String baseUrl =
-        "https://api.themoviedb.org/3/discover/movie?api_key=$api_key&page=${page ?? this.page}";
-
-    try {
-      final res = await http.get(Uri.parse(baseUrl), headers: {
-        'Content-Type': 'application/json',
-      });
-      var result = json.decode(res.body);
-
-      if (res.statusCode == 200) {
-        if (page == 1) {
-          list.value = result['results'];
-        } else {
-          list.addAll(result['results']);
-        }
-        this.page++;
-      } else {
-        Get.snackbar('error', 'Oops something error!');
-      }
-    } catch (e) {
-      Get.snackbar('error', 'Failed: $e');
-      print(e);
-    } finally {
-      isLoading.value = false;
+  Route? onGenerateRoute(RouteSettings settings) {
+    if (settings.name == '/movie') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => MovieScreens(),
+          binding: MovieBindings());
     }
+
+    if (settings.name == '/trending') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => TrendingScreen(),
+          binding: TrendingBindings());
+    }
+
+    if (settings.name == '/tv') {
+      return GetPageRoute(
+          settings: settings, page: () => TvScreen(), binding: TvBindings());
+    }
+
+    return null;
   }
 }
