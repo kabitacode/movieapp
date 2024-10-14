@@ -46,26 +46,26 @@ class _DetailScreenState extends State<DetailScreen> {
                       onTap: () {
                         Get.back();
                       },
-                      child: Row(
-                        children: [
-                          Icon(
-                            size: 15,
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Back",
-                            style: GoogleFonts.openSans(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              size: 15,
+                              Icons.arrow_back_ios,
                               color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
                             ),
-                          )
-                        ],
+                            Text(
+                              "Back",
+                              style: GoogleFonts.openSans(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
                     ),
                     Center(
                       child: Text(
@@ -96,30 +96,33 @@ class _DetailScreenState extends State<DetailScreen> {
                       height: 20,
                     ),
                     if (movie['genres'] != null)
-                      Wrap(
-                        spacing: 10,
-                        runSpacing: 15,
-                        children:
-                            List.generate(movie['genres'].length, (index) {
-                          return Expanded(
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 4),
-                              decoration: BoxDecoration(
-                                  color: AppColors.other1,
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: Text(
-                                textAlign: TextAlign.center,
-                                movie['genres'][index]['name'],
-                                style: GoogleFonts.openSans(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Wrap(
+                          spacing: 10,
+                          runSpacing: 15,
+                          children:
+                              List.generate(movie['genres'].length, (index) {
+                            return Expanded(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 4),
+                                decoration: BoxDecoration(
+                                    color: AppColors.other1,
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  movie['genres'][index]['name'],
+                                  style: GoogleFonts.openSans(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          }),
+                        ),
                       ),
                     Container(
                       margin:

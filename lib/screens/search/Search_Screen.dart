@@ -5,14 +5,14 @@ import 'package:movieapp/controller/home_controller.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
-class HomeScreens extends StatefulWidget {
-  const HomeScreens({super.key});
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _SearchScreenState createState() => _SearchScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreens> {
+class _SearchScreenState extends State<SearchScreen> {
   final HomeController controller = Get.put(HomeController());
   final ScrollController _scrollController = ScrollController();
 

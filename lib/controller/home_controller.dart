@@ -7,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class HomeController extends GetxController {
   var isLoading = true.obs;
   var list = [].obs;
+  var page = 1;
   String? api_key = dotenv.env['API_KEY'];
 
   @override
@@ -20,22 +21,25 @@ class HomeController extends GetxController {
     super.dispose();
   }
 
-  void getMovies() async {
+  void getMovies({int? page}) async {
     isLoading.value = true;
 
     final String baseUrl =
-        "https://api.themoviedb.org/3/discover/movie?api_key=$api_key";
+        "https://api.themoviedb.org/3/discover/movie?api_key=$api_key&page=${page ?? this.page}";
 
     try {
       final res = await http.get(Uri.parse(baseUrl), headers: {
         'Content-Type': 'application/json',
-        // "Authorization":
-        //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYWMzODcwMzRhNDA5OTA1YjgxMTg1MDdkMzhkYTU5MyIsIm5iZiI6MTcyODQ0MTA3OS40ODEwMjUsInN1YiI6IjY3MDRlNGFkNGIwYzViOWQ3MTY5Yzk4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nFpg8WE3KBIwywq197_baJqKevk46HhrVNiFqq2_gMs'
       });
       var result = json.decode(res.body);
 
       if (res.statusCode == 200) {
-        list.value = result['results'];
+        if (page == 1) {
+          list.value = result['results'];
+        } else {
+          list.addAll(result['results']);
+        }
+        this.page++;
       } else {
         Get.snackbar('error', 'Oops something error!');
       }
