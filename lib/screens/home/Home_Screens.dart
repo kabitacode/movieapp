@@ -28,6 +28,8 @@ class HomeScreens extends GetView<HomeController> {
                   icon: Icon(Icons.tv_rounded), label: "TV"),
               BottomNavigationBarItem(
                   icon: Icon(Icons.search), label: "Search"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.account_circle_rounded), label: "Profile"),
             ],
             backgroundColor: AppColors.background,
             currentIndex: controller.tabIndex.value,
