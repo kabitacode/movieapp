@@ -74,7 +74,7 @@ class _SearchScreenState extends State<SearchScreens> {
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     if (_textEditingController.text.isEmpty) {
-                                      controller.getMovies();
+                                      controller.getMovies(page: 1);
                                     } else {
                                       controller.searchApi(
                                           _textEditingController.text);
@@ -83,12 +83,12 @@ class _SearchScreenState extends State<SearchScreens> {
                                   icon: Icon(Icons.search))),
                           onChanged: (val) {
                             if (val.isEmpty) {
-                              controller.getMovies();
+                              controller.getMovies(page: 1);
                             }
                           },
                           onSubmitted: (query) {
                             if (_textEditingController.text.isEmpty) {
-                              controller.getMovies();
+                              controller.getMovies(page: 1);
                             } else {
                               controller.searchApi(query);
                             }
