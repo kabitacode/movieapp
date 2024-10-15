@@ -8,6 +8,7 @@ class ProfileController extends GetxController {
   var data = {}.obs;
   var isLoading = true.obs;
   String? access_token = dotenv.env['ACCESS_TOKEN'];
+  var account_id = dotenv.env['ACCOUNT_ID'];
 
   @override
   void onInit() {
@@ -22,7 +23,7 @@ class ProfileController extends GetxController {
 
   void getApi() async {
     isLoading.value = true;
-    const String url = 'https://api.themoviedb.org/3/account/2155979';
+    var url = 'https://api.themoviedb.org/3/account/$account_id';
     try {
       final res = await http.get(Uri.parse(url), headers: {
         'Content-Type': 'application/json',
