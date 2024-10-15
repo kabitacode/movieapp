@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/controller/detail_controller.dart';
+import 'package:movieapp/controller/favorite_controller.dart';
 import 'package:movieapp/controller/home_controller.dart';
 import 'package:movieapp/utils/theme.dart';
 
@@ -16,11 +17,21 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   late DetailController detailController;
+  var isFavorite = false;
 
   @override
   void initState() {
     super.initState();
     detailController = Get.put(DetailController(movieId: widget.movieId));
+  }
+
+  void postFavorite() {
+    Get.put(FavoriteController(movieId: detailController.movieId));
+    final _controller = Get.find<FavoriteController>();
+    _controller.addToFavorites(!isFavorite);
+    setState(() {
+      isFavorite = !isFavorite;
+    });
   }
 
   @override
@@ -79,7 +90,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Center(
                         child: detailController.list['poster_path'] != null
@@ -94,6 +105,18 @@ class _DetailScreenState extends State<DetailScreen> {
                               )),
                     SizedBox(
                       height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                              onPressed: () => postFavorite(),
+                              iconSize: 35,
+                              icon: Icon(
+                                Icons.favorite,
+                                color: isFavorite ? Colors.red : Colors.white,
+                              ))),
                     ),
                     if (movie['genres'] != null)
                       Padding(
