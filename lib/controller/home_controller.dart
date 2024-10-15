@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/bindings/Trending_Bindings.dart';
 import 'package:movieapp/bindings/Tv_Bindings.dart';
+import 'package:movieapp/bindings/favorite_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
+import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
@@ -15,7 +17,14 @@ class HomeController extends GetxController {
   static HomeController get to => Get.find();
   var tabIndex = 0.obs;
 
-  final pages = <String>['/movie', '/trending', '/tv', '/search', '/profile'];
+  final pages = <String>[
+    '/movie',
+    '/trending',
+    '/tv',
+    '/search',
+    '/profile',
+    '/favorite'
+  ];
 
   void changeTabIndex(int idx) {
     tabIndex.value = idx;
@@ -59,6 +68,13 @@ class HomeController extends GetxController {
           settings: settings,
           page: () => ProfileScreen(),
           binding: ProfileBindings());
+    }
+
+    if (settings.name == '/favorite') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => FavoriteScreen(),
+          binding: FavoriteBindings());
     }
 
     return null;
