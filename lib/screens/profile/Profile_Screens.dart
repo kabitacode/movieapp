@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ButtonProfile(
                           title: 'Favorite',
                           icon: Icons.favorite,
-                          onTap: () {}),
+                          onTap: () => Get.toNamed('/favorite')),
                       ButtonProfile(
                           title: 'Rated', icon: Icons.stars, onTap: () {}),
                       ButtonProfile(
