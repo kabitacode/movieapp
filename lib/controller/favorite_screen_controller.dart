@@ -11,10 +11,13 @@ class FavoriteScreenController extends GetxController {
   var account_id = dotenv.env['ACCOUNT_ID'];
   String? access_token = dotenv.env['ACCESS_TOKEN'];
 
+  final String selectFavorite;
+  FavoriteScreenController({required this.selectFavorite});
+
   @override
   void onInit() {
     super.onInit();
-    getMovies();
+    fetchFavorite(page: 1);
   }
 
   @override
@@ -22,11 +25,11 @@ class FavoriteScreenController extends GetxController {
     super.dispose();
   }
 
-  void getMovies({int? page}) async {
+  void fetchFavorite({int? page}) async {
     isLoading.value = true;
-
+    final String endpoint = selectFavorite == 'movie' ? 'movies' : 'tv';
     var url =
-        'https://api.themoviedb.org/3/account/$account_id/favorite/movies?language=en-US&page=${page ?? this.page}';
+        'https://api.themoviedb.org/3/account/$account_id/favorite/$endpoint?language=en-US&page=${page ?? this.page}';
 
     try {
       final res = await http.get(Uri.parse(url), headers: {
