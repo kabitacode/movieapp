@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movieapp/controller/favorite_screen_controller.dart';
-import 'package:movieapp/controller/movie_controller.dart';
+import 'package:movieapp/controller/watchlist_screen_controller.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
-class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({super.key});
+class WatchlistScreen extends StatefulWidget {
+  const WatchlistScreen({super.key});
 
   @override
-  _FavoriteScreenState createState() => _FavoriteScreenState();
+  _WatchlistScreenState createState() => _WatchlistScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
-  final FavoriteScreenController controller =
-      Get.put(FavoriteScreenController());
+class _WatchlistScreenState extends State<WatchlistScreen> {
+  final WatchlistScreenController controller =
+      Get.put(WatchlistScreenController());
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -24,7 +23,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        controller.getMovies(page: controller.page);
+        controller.getApi(page: controller.page);
       }
     });
   }
