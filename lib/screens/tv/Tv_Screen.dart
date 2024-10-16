@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/controller/tv_controller.dart';
+import 'package:movieapp/screens/detail-tv/Detail_Tv_Screen.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
@@ -60,7 +61,7 @@ class _TvScreenState extends State<TvScreen> {
 
                             return InkWell(
                                 onTap: () =>
-                                    Get.to(DetailScreen(movieId: item['id'])),
+                                    Get.to(DetailTvScreen(movieId: item['id'])),
                                 child: Container(
                                   padding: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
