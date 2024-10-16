@@ -31,19 +31,19 @@ class _DetailTvScreenState extends State<DetailTvScreen> {
     watchlistController = Get.put(WatchlistController(movieId: widget.movieId));
   }
 
-  void postFavorite() {
+  void postFavorite(String mediaType) {
     Get.put(FavoriteController(movieId: detailController.movieId));
     final controller = Get.find<FavoriteController>();
-    controller.addToFavorites(!isFavorite);
+    controller.addToFavorites(!isFavorite, mediaType: mediaType);
     setState(() {
       isFavorite = !isFavorite;
     });
   }
 
-  void postWatchList() {
+  void postWatchList(String mediaType) {
     Get.put(WatchlistController(movieId: detailController.movieId));
     final watchController = Get.find<WatchlistController>();
-    watchController.addToWatchlist(!isWatchList);
+    watchController.addToWatchlist(!isWatchList, mediaType: mediaType);
     setState(() {
       isWatchList = !isWatchList;
     });
@@ -130,7 +130,7 @@ class _DetailTvScreenState extends State<DetailTvScreen> {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                                onPressed: () => postWatchList(),
+                                onPressed: () => postWatchList('tv'),
                                 child: FittedBox(
                                     child: Row(
                                   mainAxisAlignment:
@@ -158,7 +158,7 @@ class _DetailTvScreenState extends State<DetailTvScreen> {
                           SizedBox(width: 20),
                           Flexible(
                             child: ElevatedButton(
-                                onPressed: () => postFavorite(),
+                                onPressed: () => postFavorite('tv'),
                                 child: FittedBox(
                                     child: Row(
                                   mainAxisAlignment:
