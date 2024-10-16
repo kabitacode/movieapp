@@ -10,6 +10,7 @@ import 'package:movieapp/bindings/tv_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
 import 'package:movieapp/bindings/watchlist_bindings.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
+import 'package:movieapp/screens/favorite-tv/Favorite_Tv_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
@@ -63,7 +64,11 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/favorite',
             page: () => FavoriteScreen(),
-            binding: FavoriteBindings()),
+            binding: FavoriteBindings(selectFavorite: 'movie')),
+        GetPage(
+            name: '/favorite-tv',
+            page: () => FavoriteTvScreen(),
+            binding: FavoriteBindings(selectFavorite: 'tv')),
         GetPage(
             name: '/watchlist',
             page: () => WatchlistScreen(),
