@@ -34,7 +34,7 @@ class FavoriteScreenController extends GetxController {
         'Authorization': 'Bearer $access_token'
       });
       var result = json.decode(res.body);
-      print(res.request);
+
       if (res.statusCode == 200) {
         if (page == 1) {
           list.value = result['results'];
@@ -47,7 +47,6 @@ class FavoriteScreenController extends GetxController {
       }
     } catch (e) {
       Get.snackbar('error', 'Failed: $e');
-      print(e);
     } finally {
       isLoading.value = false;
     }
