@@ -26,7 +26,7 @@ class FavoriteScreenController extends GetxController {
     isLoading.value = true;
 
     var url =
-        'https://api.themoviedb.org/3/account/$account_id/favorite/movies?language=en-US&page=${page ?? this.page}&sort_by=created_at.asc';
+        'https://api.themoviedb.org/3/account/$account_id/favorite/movies?language=en-US&page=${page ?? this.page}';
 
     try {
       final res = await http.get(Uri.parse(url), headers: {
@@ -34,7 +34,7 @@ class FavoriteScreenController extends GetxController {
         'Authorization': 'Bearer $access_token'
       });
       var result = json.decode(res.body);
-
+      print(res.request);
       if (res.statusCode == 200) {
         if (page == 1) {
           list.value = result['results'];
