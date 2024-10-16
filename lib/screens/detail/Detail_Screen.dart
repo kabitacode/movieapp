@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/controller/detail_controller.dart';
 import 'package:movieapp/controller/favorite_controller.dart';
-import 'package:movieapp/controller/home_controller.dart';
+import 'package:movieapp/controller/watchlist_controller.dart';
 import 'package:movieapp/utils/theme.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -28,17 +28,17 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void postFavorite() {
     Get.put(FavoriteController(movieId: detailController.movieId));
-    final _controller = Get.find<FavoriteController>();
-    _controller.addToFavorites(!isFavorite);
+    final controller = Get.find<FavoriteController>();
+    controller.addToFavorites(!isFavorite);
     setState(() {
       isFavorite = !isFavorite;
     });
   }
 
   void postWatchList() {
-    Get.put(FavoriteController(movieId: detailController.movieId));
-    final _watchController = Get.find<FavoriteController>();
-    _watchController.addToWatchlist(!isWatchList);
+    Get.put(WatchlistController(movieId: detailController.movieId));
+    final watchController = Get.find<WatchlistController>();
+    watchController.addToWatchlist(!isWatchList);
     setState(() {
       isWatchList = !isWatchList;
     });
@@ -52,14 +52,14 @@ class _DetailScreenState extends State<DetailScreen> {
         backgroundColor: AppColors.background,
         body: Obx(() {
           if (detailController.isLoading.value) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
             return SafeArea(
                 child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -71,7 +71,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               size: 15,
                               Icons.arrow_back_ios,
                               color: Colors.white,
