@@ -10,6 +10,7 @@ class FavoriteController extends GetxController {
   var account_id = dotenv.env['ACCOUNT_ID'];
   var isLoading = true.obs;
   var data = {}.obs;
+  var watchList = {}.obs;
 
   final int movieId;
   FavoriteController({required this.movieId});
@@ -29,22 +30,60 @@ class FavoriteController extends GetxController {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer $access_token'
           },
-          body: jsonEncode(
-              {'media_type': 'movie', 'media_id': movieId, 'favorite': true}));
+          body: jsonEncode({
+            'media_type': 'movie',
+            'media_id': movieId,
+            'favorite': isFavorite
+          }));
 
       final result = json.decode(res.body);
-      print(res.statusCode);
+
       if (res.statusCode == 201) {
         data.assignAll(result);
-        Get.snackbar('success',
-            isFavorite ? 'Added to Favorites' : 'Remove from Favorites');
-      } else {
-        Get.snackbar('error', 'Oops something Error');
+        Get.snackbar('success', 'Added to Favorites');
+      }
+
+      if (res.statusCode == 200) {
+        data.assignAll(result);
+        Get.snackbar(
+            'success', result['status_message'] ?? "Remove from Favorites");
       }
     } catch (e) {
       Get.snackbar('error', 'Oops : $e');
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  void addToWatchlist(bool isWatchlist) async {
+    var url = 'https://api.themoviedb.org/3/account/$account_id/watchlist';
+
+    try {
+      final res = await http.post(Uri.parse(url),
+          headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $access_token'
+          },
+          body: jsonEncode({
+            'media_type': 'movie',
+            'media_id': movieId,
+            'watchlist': isWatchlist
+          }));
+
+      final result = await json.decode(res.body);
+      if (res.statusCode == 201) {
+        data.assignAll(result);
+        Get.snackbar('success', 'Added to Watchlist');
+      }
+
+      if (res.statusCode == 200) {
+        data.assignAll(result);
+        Get.snackbar(
+            'success', result['status_message'] ?? "Remove from Watchlist");
+      }
+    } catch (e) {
+      Get.snackbar('error', 'Oops something Error : $e');
     }
   }
 }
