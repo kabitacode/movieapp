@@ -18,7 +18,7 @@ class WatchlistController extends GetxController {
     super.onInit();
   }
 
-  void addToWatchlist(bool isWatchlist) async {
+  void addToWatchlist(bool isWatchlist, {required String mediaType}) async {
     var url = 'https://api.themoviedb.org/3/account/$account_id/watchlist';
 
     try {
@@ -30,7 +30,7 @@ class WatchlistController extends GetxController {
             'Authorization': 'Bearer $access_token'
           },
           body: jsonEncode({
-            'media_type': 'movie',
+            'media_type': mediaType,
             'media_id': movieId,
             'watchlist': isWatchlist
           }));
