@@ -69,14 +69,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         height: 20,
                       ),
-                      ButtonProfile(
-                          title: 'Favorite',
-                          icon: Icons.favorite,
-                          onTap: () => Get.toNamed('/favorite')),
-                      ButtonProfile(
-                          title: 'Rated', icon: Icons.stars, onTap: () {}),
-                      ButtonProfile(
-                          title: 'Watchlist', icon: Icons.tv, onTap: () {})
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20),
+                        child: ButtonProfile(
+                            title: 'Favorite Movies',
+                            icon: Icons.favorite,
+                            onTap: () => Get.toNamed('/favorite')),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ButtonProfile(
+                              title: 'Favorite TV',
+                              icon: Icons.tv,
+                              onTap: () {})),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20),
+                        child: ButtonProfile(
+                            title: 'Rated', icon: Icons.stars, onTap: () {}),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ButtonProfile(
+                              title: 'Watchlist',
+                              icon: Icons.tv,
+                              onTap: () {})),
                     ],
                   )),
             ));
