@@ -81,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: ButtonProfile(
                               title: 'Favorite TV',
                               icon: Icons.tv,
-                              onTap: () {})),
+                              onTap: () => Get.toNamed('/favorite-tv'))),
                       Padding(
                         padding: EdgeInsets.only(bottom: 20),
                         child: ButtonProfile(
