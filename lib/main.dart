@@ -8,6 +8,7 @@ import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/trending_bindings.dart';
 import 'package:movieapp/bindings/tv_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
+import 'package:movieapp/bindings/watchlist_bindings.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
@@ -19,6 +20,7 @@ import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movieapp/screens/tv/Tv_Screen.dart';
+import 'package:movieapp/screens/watchlist/Watchlist_Screen.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -62,6 +64,10 @@ class MyApp extends StatelessWidget {
             name: '/favorite',
             page: () => FavoriteScreen(),
             binding: FavoriteBindings()),
+        GetPage(
+            name: '/watchlist',
+            page: () => WatchlistScreen(),
+            binding: WatchlistBindings()),
         // GetPage(
         //     name: '/detail',
         //     page: () => DetailScreen(),
