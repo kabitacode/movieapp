@@ -19,7 +19,7 @@ class FavoriteController extends GetxController {
     super.onInit();
   }
 
-  void addToFavorites(bool isFavorite) async {
+  void addToFavorites(bool isFavorite, {required String mediaType}) async {
     var url = 'https://api.themoviedb.org/3/account/$account_id/favorite';
     try {
       isLoading.value = true;
@@ -30,7 +30,7 @@ class FavoriteController extends GetxController {
             'Authorization': 'Bearer $access_token'
           },
           body: jsonEncode({
-            'media_type': 'movie',
+            'media_type': mediaType,
             'media_id': movieId,
             'favorite': isFavorite
           }));
