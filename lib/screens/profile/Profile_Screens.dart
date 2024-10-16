@@ -92,7 +92,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: ButtonProfile(
                               title: 'Watchlist',
                               icon: Icons.tv,
-                              onTap: () {})),
+                              onTap: () {
+                                Get.toNamed('/watchlist');
+                              })),
                     ],
                   )),
             ));
