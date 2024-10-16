@@ -6,12 +6,14 @@ import 'package:movieapp/bindings/favorite_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
+import 'package:movieapp/bindings/watchlist_bindings.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
 import 'package:movieapp/screens/tv/Tv_Screen.dart';
+import 'package:movieapp/screens/watchlist/Watchlist_Screen.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
@@ -23,7 +25,10 @@ class HomeController extends GetxController {
     '/tv',
     '/search',
     '/profile',
-    '/favorite'
+    '/favorite',
+    '/favorite-tv',
+    '/watchlist',
+    '/watchlist-tv',
   ];
 
   void changeTabIndex(int idx) {
@@ -75,6 +80,13 @@ class HomeController extends GetxController {
           settings: settings,
           page: () => FavoriteScreen(),
           binding: FavoriteBindings());
+    }
+
+    if (settings.name == '/watchlist') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => WatchlistScreen(),
+          binding: WatchlistBindings());
     }
 
     return null;
