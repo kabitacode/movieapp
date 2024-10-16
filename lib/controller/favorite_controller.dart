@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class FavoriteController extends GetxController {
   String? access_token = dotenv.env['ACCESS_TOKEN'];
   var account_id = dotenv.env['ACCOUNT_ID'];
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   var data = {}.obs;
   var watchList = {}.obs;
 
