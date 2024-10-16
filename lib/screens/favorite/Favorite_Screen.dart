@@ -79,7 +79,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       ),
                     ),
                     Text(
-                      "Favorite",
+                      "Favorite Movies",
                       style: GoogleFonts.openSans(
                         color: Colors.white,
                         fontSize: 20,
