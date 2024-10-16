@@ -22,6 +22,7 @@ class WatchlistController extends GetxController {
     var url = 'https://api.themoviedb.org/3/account/$account_id/watchlist';
 
     try {
+      isLoading.value = true;
       final res = await http.post(Uri.parse(url),
           headers: {
             'accept': 'application/json',
@@ -47,6 +48,8 @@ class WatchlistController extends GetxController {
       }
     } catch (e) {
       Get.snackbar('error', 'Oops something Error : $e');
+    } finally {
+      isLoading.value = false;
     }
   }
 }
