@@ -23,7 +23,7 @@ import 'package:movieapp/screens/tv/Tv_Screen.dart';
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
