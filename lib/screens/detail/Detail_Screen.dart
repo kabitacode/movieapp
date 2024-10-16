@@ -18,6 +18,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late DetailController detailController;
   var isFavorite = false;
+  var isWatchList = false;
 
   @override
   void initState() {
@@ -31,6 +32,15 @@ class _DetailScreenState extends State<DetailScreen> {
     _controller.addToFavorites(!isFavorite);
     setState(() {
       isFavorite = !isFavorite;
+    });
+  }
+
+  void postWatchList() {
+    Get.put(FavoriteController(movieId: detailController.movieId));
+    final _watchController = Get.find<FavoriteController>();
+    _watchController.addToWatchlist(!isWatchList);
+    setState(() {
+      isWatchList = !isWatchList;
     });
   }
 
@@ -81,7 +91,9 @@ class _DetailScreenState extends State<DetailScreen> {
                     Center(
                       child: Text(
                         textAlign: TextAlign.center,
-                        detailController.list['title'],
+                        detailController.list['title'] ??
+                            detailController.list['name'] ??
+                            'Title Not Available',
                         style: GoogleFonts.openSans(
                           color: Colors.white,
                           fontSize: 22,
@@ -108,15 +120,62 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
-                              onPressed: () => postFavorite(),
-                              iconSize: 35,
-                              icon: Icon(
-                                Icons.favorite,
-                                color: isFavorite ? Colors.red : Colors.white,
-                              ))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () => postWatchList(),
+                                child: FittedBox(
+                                    child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text('Add to Watchlist',
+                                        style: GoogleFonts.openSans(
+                                          color: AppColors.typography,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                    SizedBox(width: 5),
+                                    Icon(
+                                      Icons.live_tv_rounded,
+                                      color: isWatchList
+                                          ? Colors.lightBlueAccent
+                                          : AppColors.typography,
+                                    )
+                                  ],
+                                ))),
+                          ),
+                          SizedBox(width: 20),
+                          Flexible(
+                            child: ElevatedButton(
+                                onPressed: () => postFavorite(),
+                                child: FittedBox(
+                                    child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text('Add to Favorite',
+                                        style: GoogleFonts.openSans(
+                                          color: AppColors.typography,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                    SizedBox(width: 5),
+                                    Icon(
+                                      Icons.favorite,
+                                      color: isFavorite
+                                          ? Colors.red
+                                          : AppColors.typography,
+                                    )
+                                  ],
+                                ))),
+                          )
+                        ],
+                      ),
                     ),
                     if (movie['genres'] != null)
                       Padding(
@@ -126,21 +185,19 @@ class _DetailScreenState extends State<DetailScreen> {
                           runSpacing: 15,
                           children:
                               List.generate(movie['genres'].length, (index) {
-                            return Expanded(
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 4),
-                                decoration: BoxDecoration(
-                                    color: AppColors.other1,
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Text(
-                                  textAlign: TextAlign.center,
-                                  movie['genres'][index]['name'],
-                                  style: GoogleFonts.openSans(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                            return Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 4),
+                              decoration: BoxDecoration(
+                                  color: AppColors.other1,
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                movie['genres'][index]['name'],
+                                style: GoogleFonts.openSans(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             );
