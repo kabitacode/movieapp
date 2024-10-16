@@ -79,7 +79,7 @@ class _FavoriteTvScreenState extends State<FavoriteTvScreen> {
                       ),
                     ),
                     Text(
-                      "Favorite Movies",
+                      "Favorite Tv",
                       style: GoogleFonts.openSans(
                         color: Colors.white,
                         fontSize: 20,
