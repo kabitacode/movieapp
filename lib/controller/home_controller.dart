@@ -7,6 +7,7 @@ import 'package:movieapp/bindings/movie_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/watchlist_bindings.dart';
+import 'package:movieapp/screens/favorite-tv/Favorite_Tv_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
@@ -79,7 +80,14 @@ class HomeController extends GetxController {
       return GetPageRoute(
           settings: settings,
           page: () => FavoriteScreen(),
-          binding: FavoriteBindings());
+          binding: FavoriteBindings(selectFavorite: 'movie'));
+    }
+
+    if (settings.name == '/favorite-tv') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => FavoriteTvScreen(),
+          binding: FavoriteBindings(selectFavorite: 'tv'));
     }
 
     if (settings.name == '/watchlist') {
