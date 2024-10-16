@@ -17,6 +17,8 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   late DetailController detailController;
+  late FavoriteController favoriteController;
+  late WatchlistController watchlistController;
   var isFavorite = false;
   var isWatchList = false;
 
@@ -24,6 +26,8 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     super.initState();
     detailController = Get.put(DetailController(movieId: widget.movieId));
+    favoriteController = Get.put(FavoriteController(movieId: widget.movieId));
+    watchlistController = Get.put(WatchlistController(movieId: widget.movieId));
   }
 
   void postFavorite() {
@@ -144,7 +148,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                       color: isWatchList
                                           ? Colors.lightBlueAccent
                                           : AppColors.typography,
-                                    )
+                                    ),
+                                    if (watchlistController.isLoading.value)
+                                      CircularProgressIndicator()
                                   ],
                                 ))),
                           ),
@@ -170,7 +176,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                       color: isFavorite
                                           ? Colors.red
                                           : AppColors.typography,
-                                    )
+                                    ),
+                                    if (favoriteController.isLoading.value)
+                                      CircularProgressIndicator()
                                   ],
                                 ))),
                           )
