@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/controller/favorite_screen_controller.dart';
-import 'package:movieapp/controller/movie_controller.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
@@ -15,7 +14,7 @@ class FavoriteTvScreen extends StatefulWidget {
 
 class _FavoriteTvScreenState extends State<FavoriteTvScreen> {
   final FavoriteScreenController controller =
-      Get.put(FavoriteScreenController(selectFavorite: 'Tv'));
+      Get.put(FavoriteScreenController(selectFavorite: 'tv'));
   final ScrollController _scrollController = ScrollController();
 
   @override
