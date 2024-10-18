@@ -4,12 +4,14 @@ import 'package:movieapp/bindings/Trending_Bindings.dart';
 import 'package:movieapp/bindings/Tv_Bindings.dart';
 import 'package:movieapp/bindings/favorite_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
+import 'package:movieapp/bindings/playingList_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/watchlist_bindings.dart';
 import 'package:movieapp/screens/favorite-tv/Favorite_Tv_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
+import 'package:movieapp/screens/playing-list/PlayingList_Screen.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
@@ -31,6 +33,7 @@ class HomeController extends GetxController {
     '/favorite-tv',
     '/watchlist',
     '/watchlist-tv',
+    '/playinglist',
   ];
 
   void changeTabIndex(int idx) {
@@ -103,6 +106,13 @@ class HomeController extends GetxController {
           settings: settings,
           page: () => WatchlistTvScreen(),
           binding: WatchlistBindings(selectWatchlist: 'tv'));
+    }
+
+    if (settings.name == '/playinglist') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => PlayingListScreen(),
+          binding: PlayingListBindings());
     }
 
     return null;
