@@ -3,6 +3,7 @@ import 'package:get/route_manager.dart';
 import 'package:movieapp/bindings/detail_bindings.dart';
 import 'package:movieapp/bindings/favorite_bindings.dart';
 import 'package:movieapp/bindings/home_bindings.dart';
+import 'package:movieapp/bindings/playingList_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/trending_bindings.dart';
@@ -14,6 +15,7 @@ import 'package:movieapp/screens/favorite-tv/Favorite_Tv_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
+import 'package:movieapp/screens/playing-list/PlayingList_Screen.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
 // import 'package:movieapp/screens/login/login.dart';
@@ -78,6 +80,10 @@ class MyApp extends StatelessWidget {
             name: '/watchlist-tv',
             page: () => WatchlistTvScreen(),
             binding: WatchlistBindings(selectWatchlist: 'tv')),
+        GetPage(
+            name: '/playinglist',
+            page: () => PlayingListScreen(),
+            binding: PlayingListBindings()),
         // GetPage(
         //     name: '/detail',
         //     page: () => DetailScreen(),
