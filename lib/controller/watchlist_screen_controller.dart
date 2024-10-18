@@ -12,6 +12,9 @@ class WatchlistScreenController extends GetxController {
   String? access_token = dotenv.env['ACCESS_TOKEN'];
   var page = 1;
 
+  final String selectwatchlist;
+  WatchlistScreenController({required this.selectwatchlist});
+
   @override
   void onInit() {
     super.onInit();
@@ -24,8 +27,9 @@ class WatchlistScreenController extends GetxController {
   }
 
   void getApi({int? page}) async {
+    final String endpoint = selectwatchlist == 'movie' ? 'movies' : 'tv';
     var url =
-        'https://api.themoviedb.org/3/account/$account_id/watchlist/movies?language=en-US&page=${page ?? this.page}';
+        'https://api.themoviedb.org/3/account/$account_id/watchlist/$endpoint?language=en-US&page=${page ?? this.page}';
 
     try {
       isLoading.value = true;
