@@ -90,10 +90,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Padding(
                           padding: EdgeInsets.only(bottom: 20),
                           child: ButtonProfile(
-                              title: 'Watchlist',
+                              title: 'Watchlist Movie',
                               icon: Icons.tv,
                               onTap: () {
                                 Get.toNamed('/watchlist');
+                              })),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ButtonProfile(
+                              title: 'Watchlist TV',
+                              icon: Icons.tv,
+                              onTap: () {
+                                Get.toNamed('/watchlist-tv');
                               })),
                     ],
                   )),
