@@ -38,7 +38,7 @@ class _MovieScreenState extends State<MovieScreens> {
     return Scaffold(
         backgroundColor: AppColors.background,
         body: Obx(() {
-          if (controller.isLoading.value && controller.list.isEmpty) {
+          if (controller.isLoading.value && controller.movieList.isEmpty) {
             return Center(
               child: CircularProgressIndicator(),
             );
