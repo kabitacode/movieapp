@@ -73,14 +73,14 @@ class _MovieScreenState extends State<MovieScreens> {
                                   crossAxisSpacing: 15,
                                   mainAxisSpacing: 20,
                                   childAspectRatio: 0.7),
-                          itemCount: controller.list.length,
+                          itemCount: controller.movieList.length,
                           itemBuilder: (context, index) {
-                            final item = controller.list[index];
+                            final item = controller.movieList[index];
 
                             return InkWell(
                                 onTap: () {
-                                  Get.to(
-                                      () => DetailScreen(movieId: item['id']));
+                                  Get.to(() =>
+                                      DetailScreen(movieId: item.id ?? 0));
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(8),
@@ -99,10 +99,10 @@ class _MovieScreenState extends State<MovieScreens> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
-                                          child: item['poster_path'] != null
+                                          child: item.posterPath != null
                                               ? Image.network(
                                                   width: double.infinity,
-                                                  'https://image.tmdb.org/t/p/w500${item['poster_path']}',
+                                                  'https://image.tmdb.org/t/p/w500${item.posterPath}',
                                                   fit: BoxFit.cover,
                                                 )
                                               : Icon(
@@ -114,7 +114,7 @@ class _MovieScreenState extends State<MovieScreens> {
                                       ),
                                       Center(
                                         child: Text(
-                                          item['title'] ?? 'No Title Available',
+                                          item.title ?? 'No Title Available',
                                           style: TextStyle(
                                               fontSize: 13,
                                               color: AppColors.typography,
@@ -128,8 +128,7 @@ class _MovieScreenState extends State<MovieScreens> {
                                       ),
                                       Center(
                                         child: Text(
-                                          item['subtitle'] ??
-                                              'No Subtitle Available',
+                                          item.title ?? 'No Subtitle Available',
                                           style: TextStyle(fontSize: 10),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,

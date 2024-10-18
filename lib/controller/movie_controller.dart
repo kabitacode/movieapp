@@ -2,12 +2,16 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:movieapp/models/movie_model.dart';
 
 class MovieController extends GetxController {
   var isLoading = true.obs;
   var list = [].obs;
   var page = 1;
   String? api_key = dotenv.env['API_KEY'];
+
+  final movieList = <MovieModel>[].obs;
+  final movie = Rxn<MovieModel>();
 
   @override
   void onInit() {
@@ -34,9 +38,13 @@ class MovieController extends GetxController {
 
       if (res.statusCode == 200) {
         if (page == 1) {
-          list.value = result['results'];
+          movieList.value = List.from(
+            result['results'].map((el) => MovieModel.fromJson(el)),
+          );
         } else {
-          list.addAll(result['results']);
+          movieList.addAll(List.from(
+            result['results'].map((el) => MovieModel.fromJson(el)),
+          ));
         }
         this.page++;
       } else {
