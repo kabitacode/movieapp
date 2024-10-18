@@ -15,7 +15,7 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   final FavoriteScreenController controller =
-      Get.put(FavoriteScreenController(selectFavorite: 'Movie'));
+      Get.put(FavoriteScreenController(selectFavorite: 'movie'));
   final ScrollController _scrollController = ScrollController();
 
   @override
