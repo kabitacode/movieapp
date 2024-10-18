@@ -14,6 +14,7 @@ import 'package:movieapp/screens/profile/Profile_Screens.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
 import 'package:movieapp/screens/tv/Tv_Screen.dart';
+import 'package:movieapp/screens/watchlist-tv/Watchlist_Tv_Screen.dart';
 import 'package:movieapp/screens/watchlist/Watchlist_Screen.dart';
 
 class HomeController extends GetxController {
@@ -94,7 +95,14 @@ class HomeController extends GetxController {
       return GetPageRoute(
           settings: settings,
           page: () => WatchlistScreen(),
-          binding: WatchlistBindings());
+          binding: WatchlistBindings(selectWatchlist: 'movie'));
+    }
+
+    if (settings.name == '/watchlist-tv') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => WatchlistTvScreen(),
+          binding: WatchlistBindings(selectWatchlist: 'tv'));
     }
 
     return null;
