@@ -14,7 +14,7 @@ class WatchlistScreen extends StatefulWidget {
 
 class _WatchlistScreenState extends State<WatchlistScreen> {
   final WatchlistScreenController controller =
-      Get.put(WatchlistScreenController());
+      Get.put(WatchlistScreenController(selectwatchlist: 'movie'));
   final ScrollController _scrollController = ScrollController();
 
   @override
