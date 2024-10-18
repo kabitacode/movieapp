@@ -21,6 +21,7 @@ import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movieapp/screens/tv/Tv_Screen.dart';
+import 'package:movieapp/screens/watchlist-tv/Watchlist_Tv_Screen.dart';
 import 'package:movieapp/screens/watchlist/Watchlist_Screen.dart';
 
 Future<void> main() async {
@@ -72,7 +73,11 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/watchlist',
             page: () => WatchlistScreen(),
-            binding: WatchlistBindings()),
+            binding: WatchlistBindings(selectWatchlist: 'movie')),
+        GetPage(
+            name: '/watchlist-tv',
+            page: () => WatchlistTvScreen(),
+            binding: WatchlistBindings(selectWatchlist: 'tv')),
         // GetPage(
         //     name: '/detail',
         //     page: () => DetailScreen(),
