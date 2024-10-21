@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movieapp/controller/movie_controller.dart';
+import 'package:movieapp/controller/playingList_controller.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
 
@@ -14,6 +15,8 @@ class MovieScreens extends StatefulWidget {
 
 class _MovieScreenState extends State<MovieScreens> {
   final MovieController controller = Get.put(MovieController());
+  final PlayingListController playingListController =
+      Get.put(PlayingListController());
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -25,6 +28,7 @@ class _MovieScreenState extends State<MovieScreens> {
         controller.getMovies(page: controller.page);
       }
     });
+    playingListController.getApi(page: 1);
   }
 
   @override
@@ -49,7 +53,7 @@ class _MovieScreenState extends State<MovieScreens> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Text(
                       "Home",
@@ -59,6 +63,53 @@ class _MovieScreenState extends State<MovieScreens> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Text(
+                    //         "Now Playing",
+                    //         style: GoogleFonts.openSans(
+                    //           color: Colors.white,
+                    //           fontSize: 15,
+                    //           fontWeight: FontWeight.w700,
+                    //         ),
+                    //       ),
+                    //       InkWell(
+                    //         onTap: () {},
+                    //         child: Container(
+                    //           child: Row(
+                    //             crossAxisAlignment: CrossAxisAlignment.center,
+                    //             mainAxisAlignment:
+                    //                 MainAxisAlignment.spaceBetween,
+                    //             children: [
+                    //               Text(
+                    //                 'Get Detail',
+                    //                 style: GoogleFonts.openSans(
+                    //                   color: Colors.white,
+                    //                   fontSize: 15,
+                    //                   fontWeight: FontWeight.w700,
+                    //                 ),
+                    //               ),
+                    //               SizedBox(
+                    //                 width: 5,
+                    //               ),
+                    //               Icon(
+                    //                 Icons.arrow_forward_ios,
+                    //                 color: Colors.white,
+                    //                 size: 15,
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),
