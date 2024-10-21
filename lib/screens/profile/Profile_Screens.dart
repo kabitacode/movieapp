@@ -85,7 +85,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Padding(
                         padding: EdgeInsets.only(bottom: 20),
                         child: ButtonProfile(
-                            title: 'Rated', icon: Icons.stars, onTap: () {}),
+                            title: 'Top Rated',
+                            icon: Icons.stars,
+                            onTap: () => Get.toNamed('rated')),
                       ),
                       Padding(
                           padding: EdgeInsets.only(bottom: 20),
@@ -110,6 +112,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               icon: Icons.list_alt_outlined,
                               onTap: () {
                                 Get.toNamed('/playinglist');
+                              })),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ButtonProfile(
+                              title: 'Popular',
+                              icon: Icons.list_alt_outlined,
+                              onTap: () {
+                                Get.toNamed('/popular');
                               })),
                     ],
                   )),
