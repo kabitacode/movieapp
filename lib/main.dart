@@ -5,6 +5,7 @@ import 'package:movieapp/bindings/favorite_bindings.dart';
 import 'package:movieapp/bindings/home_bindings.dart';
 import 'package:movieapp/bindings/playingList_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
+import 'package:movieapp/bindings/rated_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/trending_bindings.dart';
 import 'package:movieapp/bindings/tv_bindings.dart';
@@ -17,6 +18,7 @@ import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
 import 'package:movieapp/screens/playing-list/PlayingList_Screen.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
+import 'package:movieapp/screens/rated/Rated_Screen.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
 // import 'package:movieapp/screens/login/login.dart';
 // import 'package:movieapp/screens/movie/Movie_Screen.dart';
@@ -84,6 +86,14 @@ class MyApp extends StatelessWidget {
             name: '/playinglist',
             page: () => PlayingListScreen(),
             binding: PlayingListBindings()),
+        GetPage(
+            name: '/rated',
+            page: () => RatedScreen(),
+            binding: RatedBindings()),
+        GetPage(
+            name: '/popular',
+            page: () => RatedScreen(),
+            binding: RatedBindings()),
         // GetPage(
         //     name: '/detail',
         //     page: () => DetailScreen(),
