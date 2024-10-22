@@ -117,9 +117,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: EdgeInsets.only(bottom: 20),
                           child: ButtonProfile(
                               title: 'Popular',
-                              icon: Icons.list_alt_outlined,
+                              icon: Icons.favorite,
                               onTap: () {
                                 Get.toNamed('/popular');
+                              })),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ButtonProfile(
+                              title: 'Upcoming',
+                              icon: Icons.new_releases_sharp,
+                              onTap: () {
+                                Get.toNamed('/upcoming');
                               })),
                     ],
                   )),
