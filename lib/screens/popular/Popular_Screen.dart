@@ -77,7 +77,7 @@ class _PopularScreenState extends State<PopularScreen> {
                       ),
                     ),
                     Text(
-                      "Top Rated",
+                      "Popular",
                       style: GoogleFonts.openSans(
                         color: Colors.white,
                         fontSize: 20,
@@ -88,7 +88,7 @@ class _PopularScreenState extends State<PopularScreen> {
                       height: 5,
                     ),
                     Text(
-                      "List of good rated movies",
+                      "List of good popular movies",
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 14,
