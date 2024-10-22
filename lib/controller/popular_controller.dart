@@ -19,7 +19,7 @@ class PopularController extends GetxController {
 
   void getApi({int? page}) async {
     final url =
-        'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page ?? this.page}';
+        'https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page ?? this.page}';
     try {
       isLoading.value = true;
       final res = await http.get(Uri.parse(url), headers: {
