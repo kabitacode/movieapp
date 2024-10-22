@@ -9,6 +9,7 @@ import 'package:movieapp/bindings/popular_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/rated_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
+import 'package:movieapp/bindings/upcoming_bindings.dart';
 import 'package:movieapp/bindings/watchlist_bindings.dart';
 import 'package:movieapp/screens/favorite-tv/Favorite_Tv_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
@@ -20,6 +21,7 @@ import 'package:movieapp/screens/rated/Rated_Screen.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
 import 'package:movieapp/screens/tv/Tv_Screen.dart';
+import 'package:movieapp/screens/upcoming/Upcoming_Screen.dart';
 import 'package:movieapp/screens/watchlist-tv/Watchlist_Tv_Screen.dart';
 import 'package:movieapp/screens/watchlist/Watchlist_Screen.dart';
 
@@ -40,6 +42,7 @@ class HomeController extends GetxController {
     '/playinglist',
     '/rated',
     '/popular',
+    '/upcoming',
   ];
 
   void changeTabIndex(int idx) {
@@ -133,6 +136,13 @@ class HomeController extends GetxController {
           settings: settings,
           page: () => PopularScreen(),
           binding: PopularBindings());
+    }
+
+    if (settings.name == '/upcoming') {
+      return GetPageRoute(
+          settings: settings,
+          page: () => UpcomingScreen(),
+          binding: UpcomingBindings());
     }
 
     return null;
