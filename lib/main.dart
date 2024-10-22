@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:movieapp/bindings/detail_bindings.dart';
+// import 'package:movieapp/bindings/detail_bindings.dart';
 import 'package:movieapp/bindings/favorite_bindings.dart';
 import 'package:movieapp/bindings/home_bindings.dart';
 import 'package:movieapp/bindings/playingList_bindings.dart';
+import 'package:movieapp/bindings/popular_bindings.dart';
 import 'package:movieapp/bindings/profile_bindings.dart';
 import 'package:movieapp/bindings/rated_bindings.dart';
 import 'package:movieapp/bindings/search_bindings.dart';
 import 'package:movieapp/bindings/trending_bindings.dart';
 import 'package:movieapp/bindings/tv_bindings.dart';
 import 'package:movieapp/bindings/movie_bindings.dart';
+import 'package:movieapp/bindings/upcoming_bindings.dart';
 import 'package:movieapp/bindings/watchlist_bindings.dart';
-import 'package:movieapp/screens/detail/Detail_Screen.dart';
+// import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/screens/favorite-tv/Favorite_Tv_Screen.dart';
 import 'package:movieapp/screens/favorite/Favorite_Screen.dart';
 import 'package:movieapp/screens/movie/Movie_Screens.dart';
 import 'package:movieapp/screens/home/Home_Screens.dart';
 import 'package:movieapp/screens/playing-list/PlayingList_Screen.dart';
+import 'package:movieapp/screens/popular/Popular_Screen.dart';
 import 'package:movieapp/screens/profile/Profile_Screens.dart';
 import 'package:movieapp/screens/rated/Rated_Screen.dart';
 import 'package:movieapp/screens/search/Search_Screens.dart';
@@ -25,6 +28,7 @@ import 'package:movieapp/screens/search/Search_Screens.dart';
 import 'package:movieapp/screens/trending/Trending_Screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movieapp/screens/tv/Tv_Screen.dart';
+import 'package:movieapp/screens/upcoming/Upcoming_Screen.dart';
 import 'package:movieapp/screens/watchlist-tv/Watchlist_Tv_Screen.dart';
 import 'package:movieapp/screens/watchlist/Watchlist_Screen.dart';
 
@@ -92,8 +96,12 @@ class MyApp extends StatelessWidget {
             binding: RatedBindings()),
         GetPage(
             name: '/popular',
-            page: () => RatedScreen(),
-            binding: RatedBindings()),
+            page: () => PopularScreen(),
+            binding: PopularBindings()),
+        GetPage(
+            name: '/upcoming',
+            page: () => UpcomingScreen(),
+            binding: UpcomingBindings()),
         // GetPage(
         //     name: '/detail',
         //     page: () => DetailScreen(),
