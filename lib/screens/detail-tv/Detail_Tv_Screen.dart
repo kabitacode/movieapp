@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movieapp/controller/detail_controller.dart';
 import 'package:movieapp/controller/detail_tv_controller.dart';
 import 'package:movieapp/controller/favorite_controller.dart';
 import 'package:movieapp/controller/watchlist_controller.dart';
