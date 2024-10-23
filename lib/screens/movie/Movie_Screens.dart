@@ -5,6 +5,7 @@ import 'package:movieapp/controller/movie_controller.dart';
 import 'package:movieapp/controller/playingList_controller.dart';
 import 'package:movieapp/screens/detail/Detail_Screen.dart';
 import 'package:movieapp/utils/theme.dart';
+import 'package:movieapp/widgets/Button_Profile.dart';
 
 class MovieScreens extends StatefulWidget {
   const MovieScreens({super.key});
@@ -14,6 +15,7 @@ class MovieScreens extends StatefulWidget {
 }
 
 class _MovieScreenState extends State<MovieScreens> {
+  int? selectedGenre;
   final MovieController controller = Get.put(MovieController());
   final PlayingListController playingListController =
       Get.put(PlayingListController());
@@ -25,7 +27,7 @@ class _MovieScreenState extends State<MovieScreens> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        controller.getMovies(page: controller.page);
+        controller.getMovies(page: controller.page, genre: selectedGenre);
       }
     });
     playingListController.getApi(page: 1);
@@ -35,6 +37,95 @@ class _MovieScreenState extends State<MovieScreens> {
   void dispose() {
     super.dispose();
     _scrollController.dispose();
+  }
+
+  void openModal() {
+    Get.bottomSheet(Obx(() {
+      if (controller.loadingGenre.value) {
+        return Container(
+          color: AppColors.background,
+          height: 200,
+          child: CircularProgressIndicator(),
+        );
+      }
+
+      return Container(
+        decoration: BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0))),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Text(
+                "Genre Movie",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.openSans(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        controller.getMovies(page: 1);
+                        Get.back();
+                      },
+                      child: Text(
+                        "All",
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.openSans(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: controller.genreList.length,
+                  itemBuilder: (context, index) {
+                    final genre = controller.genreList[index];
+                    return ListTile(
+                      title: Text(
+                        genre.name,
+                        style: GoogleFonts.openSans(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selectedGenre = genre.id;
+                        });
+                        controller.getMovies(genre: selectedGenre, page: 1);
+                        Get.back();
+                      },
+                    );
+                  }),
+            ),
+          ],
+        ),
+      );
+    }));
   }
 
   @override
@@ -66,55 +157,58 @@ class _MovieScreenState extends State<MovieScreens> {
                     SizedBox(
                       height: 10,
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 10),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [
-                    //       Text(
-                    //         "Now Playing",
-                    //         style: GoogleFonts.openSans(
-                    //           color: Colors.white,
-                    //           fontSize: 15,
-                    //           fontWeight: FontWeight.w700,
-                    //         ),
-                    //       ),
-                    //       InkWell(
-                    //         onTap: () {},
-                    //         child: Container(
-                    //           child: Row(
-                    //             crossAxisAlignment: CrossAxisAlignment.center,
-                    //             mainAxisAlignment:
-                    //                 MainAxisAlignment.spaceBetween,
-                    //             children: [
-                    //               Text(
-                    //                 'Get Detail',
-                    //                 style: GoogleFonts.openSans(
-                    //                   color: Colors.white,
-                    //                   fontSize: 15,
-                    //                   fontWeight: FontWeight.w700,
-                    //                 ),
-                    //               ),
-                    //               SizedBox(
-                    //                 width: 5,
-                    //               ),
-                    //               Icon(
-                    //                 Icons.arrow_forward_ios,
-                    //                 color: Colors.white,
-                    //                 size: 15,
-                    //               )
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Select Genre",
+                            style: GoogleFonts.openSans(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              controller.getGenre();
+                              openModal();
+                            },
+                            child: Container(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Get Detail',
+                                    style: GoogleFonts.openSans(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.white,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
                       child: GridView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
